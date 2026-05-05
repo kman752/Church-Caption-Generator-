@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christ Oasis Tabernacle — Instagram Caption Generator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>📱 Instagram Caption Generator</h1>
+        <p class="church-name">Christ Oasis Tabernacle</p>
+        <p>Generate SOP-Compliant Sermon Captions</p>
+      </header>
+
+      <main>
+        <!-- Error Message -->
+        <div id="errorMessage" class="error-message"></div>
+
+        <!-- Input Form -->
+        <form id="captionForm">
+          <!-- Preacher Information Section -->
+          <div class="form-section">
+            <h2>👤 Preacher Information</h2>
+
+            <div class="form-group">
+              <label for="title">Preacher's Title *</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="e.g., Pastor, Bishop, Evangelist, Apostle, Minister"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="e.g., John"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="e.g., Smith"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Sermon Transcript Section -->
+          <div class="form-section">
+            <h2>📄 Sermon Transcript</h2>
+
+            <div class="form-group">
+              <label class="file-upload-label">
+                📤 Upload Transcript File (optional)
+              </label>
+              <input
+                type="file"
+                id="fileUpload"
+                name="fileUpload"
+                accept=".txt,.docx"
+              />
+              <small
+                style="
+                  display: block;
+                  margin-top: 8px;
+                  color: #666;
+                  font-style: italic;
+                "
+              >
+                Supported: .txt, .docx files. Or paste directly below.
+              </small>
+            </div>
+
+            <div class="form-group">
+              <label for="transcript">Sermon Transcript (or Paste Here) *</label>
+              <textarea
+                id="transcript"
+                name="transcript"
+                placeholder="Paste your sermon transcript here. The more detail, the better the caption!"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="button-group">
+            <button type="submit" id="generateBtn">
+              ✨ Generate Caption
+            </button>
+          </div>
+        </form>
+
+        <!-- Results Section -->
+        <div id="resultSection">
+          <h2>📋 Your Instagram Caption</h2>
+
+          <div class="controls">
+            <button type="button" id="copyBtn">📋 Copy Caption</button>
+          </div>
+
+          <div id="captionOutput"></div>
+
+          <div class="checklist-section">
+            <h3>✅ Pre-Post Checklist</h3>
+            <p style="color: #666; margin-bottom: 15px;">
+              Verify each item before posting:
+            </p>
+            <div id="checklistContainer"></div>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          🙏 Created for <strong>Christ Oasis Tabernacle</strong> —
+          <em>Times of Refreshing, Always Come from the Presence of the Lord!</em>
+        </p>
+        <p style="margin-top: 10px; font-size: 0.85em;">
+          📍 820 California Ave, Dolton, IL 60419 | Sunday Services: 10:30 AM –
+          12:30 PM | Live Stream: 11:30 AM
+        </p>
+      </footer>
+    </div>
+
+    <!-- Load Caption Generator Engine -->
+    <script src="lib/generator.js"></script>
+    <!-- Load Frontend Logic -->
+    <script src="js/caption-generator.js"></script>
+  </body>
+</html>
