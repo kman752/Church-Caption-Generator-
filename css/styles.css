@@ -1,0 +1,269 @@
+/* Main Stylesheet for Caption Generator */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #333;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+header {
+  background: linear-gradient(135deg, #0f3460 0%, #533483 100%);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+header p {
+  font-size: 1.1em;
+  opacity: 0.95;
+  margin-bottom: 5px;
+}
+
+header .church-name {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+main {
+  padding: 40px;
+}
+
+.form-section {
+  margin-bottom: 40px;
+}
+
+.form-section h2 {
+  font-size: 1.5em;
+  color: #0f3460;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #533483;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #0f3460;
+  margin-bottom: 8px;
+  font-size: 1.05em;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #533483;
+  box-shadow: 0 0 0 3px rgba(83, 52, 131, 0.1);
+}
+
+textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.file-upload-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+button {
+  padding: 14px 30px;
+  font-size: 1.05em;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#generateBtn {
+  background: linear-gradient(135deg, #0f3460 0%, #533483 100%);
+  color: white;
+  flex: 1;
+}
+
+#generateBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(83, 52, 131, 0.3);
+}
+
+#generateBtn:active {
+  transform: translateY(0);
+}
+
+#copyBtn {
+  background: #27ae60;
+  color: white;
+  min-width: 150px;
+}
+
+#copyBtn:hover {
+  background: #229954;
+  transform: translateY(-2px);
+}
+
+#copyBtn:active {
+  transform: translateY(0);
+}
+
+.error-message {
+  display: none;
+  background: #fee;
+  border-left: 4px solid #c33;
+  color: #822;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+  font-size: 0.95em;
+}
+
+#resultSection {
+  display: none;
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+#resultSection h2 {
+  color: #0f3460;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+#captionOutput {
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+  font-family: "Courier New", monospace;
+  font-size: 0.95em;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+  color: #333;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.checklist-section h3 {
+  color: #0f3460;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+
+.checklist-item {
+  padding: 12px;
+  background: white;
+  border-left: 4px solid #27ae60;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.checklist-item:nth-child(even) {
+  background: #f0f0f0;
+}
+
+footer {
+  background: #f5f5f5;
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  border-top: 1px solid #ddd;
+  font-size: 0.9em;
+}
+
+footer a {
+  color: #533483;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.8em;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  #copyBtn {
+    min-width: unset;
+  }
+
+  #resultSection {
+    padding: 20px;
+  }
+
+  #captionOutput {
+    font-size: 0.85em;
+  }
+}
