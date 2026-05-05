@@ -1,4 +1,4 @@
-# Christ Oasis Tabernacle — Instagram Caption Generator
+# Christ Oasis Tabernacle — Media Caption Generator
 
 A web application that generates SOP-compliant Instagram captions for Christ Oasis Tabernacle sermon posts.
 
