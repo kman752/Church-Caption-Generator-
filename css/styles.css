@@ -137,6 +137,11 @@ button {
   transform: translateY(0);
 }
 
+#generateBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 #copyBtn {
   background: #27ae60;
   color: white;
