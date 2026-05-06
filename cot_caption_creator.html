@@ -153,8 +153,12 @@
   textarea:focus { border-color: #c8a96e; background: white; }
   textarea::placeholder { color: #bbb; }
 
-  .generate-btn {
-    width: 100%;
+  .button-container {
+    display: flex; gap: 12px; margin-top: 20px;
+  }
+
+  .generate-btn, .regenerate-btn {
+    flex: 1;
     padding: 15px 24px;
     background: #1a1a2e;
     color: white;
@@ -170,6 +174,15 @@
   .generate-btn:hover:not(:disabled) { background: #2a2a4e; }
   .generate-btn:active:not(:disabled) { transform: scale(0.99); }
   .generate-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .regenerate-btn {
+    background: #c8a96e;
+    display: none;
+  }
+
+  .regenerate-btn:hover:not(:disabled) { background: #b8953e; }
+  .regenerate-btn:active:not(:disabled) { transform: scale(0.99); }
+  .regenerate-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .spinner {
     width: 18px; height: 18px;
@@ -320,9 +333,14 @@
     </div>
   </div>
 
-  <button class="generate-btn" id="generate-btn" onclick="generateCaption()">
-    <span id="btn-text">Generate Caption</span>
-  </button>
+  <div class="button-container">
+    <button class="generate-btn" id="generate-btn" onclick="generateCaption()">
+      <span id="btn-text">Generate Caption</span>
+    </button>
+    <button class="regenerate-btn" id="regenerate-btn" onclick="generateCaption()">
+      <span id="regenerate-text">Regenerate Caption</span>
+    </button>
+  </div>
 
   <div id="error-container"></div>
   <div id="result-container"></div>
@@ -384,6 +402,7 @@ HASHTAG_COUNT_UNDER_30: PASS or FAIL (X total)
 
 let fileContent = '';
 let selectedFile = null;
+let hasGeneratedCaption = false;
 
 const fileInput = document.getElementById('file-input');
 const fileDropEl = document.getElementById('file-drop');
@@ -432,13 +451,17 @@ function removeFile() {
 }
 
 function setLoading(loading) {
-  const btn = document.getElementById('generate-btn');
-  const btnText = document.getElementById('btn-text');
-  btn.disabled = loading;
+  const generateBtn = document.getElementById('generate-btn');
+  const regenerateBtn = document.getElementById('regenerate-btn');
+  const activeBtn = hasGeneratedCaption ? regenerateBtn : generateBtn;
+  
+  activeBtn.disabled = loading;
   if (loading) {
-    btn.innerHTML = '<div class="spinner"></div><span>Generating caption...</span>';
+    activeBtn.innerHTML = '<div class="spinner"></div><span>Generating caption...</span>';
   } else {
-    btn.innerHTML = '<span id="btn-text">Generate Caption</span>';
+    activeBtn.innerHTML = hasGeneratedCaption 
+      ? '<span id="regenerate-text">Regenerate Caption</span>'
+      : '<span id="btn-text">Generate Caption</span>';
   }
 }
 
@@ -559,11 +582,26 @@ ${transcript.substring(0, 12000)}`;
     const checklistRaw = checklistMatch ? checklistMatch[1] : '';
     const captionOnly = fullText.replace(/---CHECKLIST---[\s\S]*?---END CHECKLIST---/, '').trim();
 
+    hasGeneratedCaption = true;
+    updateButtonVisibility();
     renderResult(captionOnly, checklistRaw);
   } catch (err) {
     showError('Something went wrong: ' + err.message);
   } finally {
     setLoading(false);
+  }
+}
+
+function updateButtonVisibility() {
+  const generateBtn = document.getElementById('generate-btn');
+  const regenerateBtn = document.getElementById('regenerate-btn');
+  
+  if (hasGeneratedCaption) {
+    generateBtn.style.display = 'none';
+    regenerateBtn.style.display = 'flex';
+  } else {
+    generateBtn.style.display = 'flex';
+    regenerateBtn.style.display = 'none';
   }
 }
 </script>
