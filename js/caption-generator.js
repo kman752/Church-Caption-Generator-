@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const checklistContainer = document.getElementById("checklistContainer");
   const errorMessage = document.getElementById("errorMessage");
 
+  // Track whether a caption has been generated
+  let hasGeneratedCaption = false;
+
   // Initialize caption generator
   const generator = new CaptionGenerator();
 
@@ -62,6 +65,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // Mark that a caption has been generated
+      hasGeneratedCaption = true;
+      updateButtonText();
+
       // Display caption
       displayCaption(result);
       displayChecklist(result.checklist);
@@ -80,6 +87,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 2000);
       });
     });
+  }
+
+  /**
+   * Update button text based on generation state
+   */
+  function updateButtonText() {
+    if (generateBtn) {
+      if (hasGeneratedCaption) {
+        generateBtn.textContent = "🔄 Regenerate Caption";
+      } else {
+        generateBtn.textContent = "✨ Generate Caption";
+      }
+    }
   }
 
   /**
